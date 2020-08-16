@@ -1,15 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style/style.css">
-    <title>Kolhab Weather Application</title>
-    <link rel="favicon" href="images/icons/favicon96x96.ico">
+    <!-- App title -->
+    <title>Weather App</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/images/icons/favicon96x96.ico" />
+
+    <!-- Theme color -->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#000">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#000">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000">
+
+    <!-- Descriptive metas -->
+    <meta name="description" content="Weather Application">
+    <meta name="keywords" content="Weather Application, Weather">
+    <meta name="author" content="Georgian Stan">
+
+    <!-- style -->
+    <link rel="stylesheet" href="./style/index.css">
+    <!-- lato font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 </head>
+
 <body>
 
-    <script src="script/script.js"></script>
+    <!-- loading screen -->
+    <div id="app-loader" class="lds-dual-ring center"></div>
+
+    <!-- main tag - here will be placed all the content of the application -->
+    <main hidden>
+        <!-- hidden attribute because at first: the main tag is hidden and the loading screen visible-->
+        <!-- open menu button -->
+        <button id="open-menu-btn" class="ripple">
+            <img class="icon-sm-28" src="./assets/images/icons/menu.png" alt="">
+        </button>
+
+        <!-- currently weather section -->
+        <section id="current-day-weather-container">
+            <!-- location that the user have inserted -->
+            <h1 class="location-label"></h1>
+
+            <!-- icon,temperature, summary container -->
+            <div class="flex-container" id="temperature-summary-container">
+                <div>
+                    <!-- icon -->
+                    <img src="./assets/images/summary-icons/clear-day-white.png" alt="Summary Icon" id="currentlyIcon">
+                </div>
+
+                <!-- degrees -->
+                <div>
+                    <h1 id="degrees-label"></h1>
+                    <p id="summary-label"></p>
+                </div>
+            </div>
+
+            <!-- humidity and wind speed-->
+            <div class="flex-container" id="humidity-wind-container">
+                <!-- humidty -->
+                <div>
+                    <img class="icon-sm-30" src="./assets/images/icons/humidity.png" alt="humidity">
+                    <span id="humidity-label"></span>
+                </div>
+
+                <!-- wind -->
+                <div>
+                    <img class="icon-sm-30" src="./assets/images/icons/wind-speed-flag.png" alt="humidity">
+                    <span id="wind-speed-label"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- lower panel -->
+        <section class="lower-panel">
+            <button id="toggle-hourly-weather" class="ripple center_x">
+                <img src="./assets/images/icons/up-arrow.png" alt="">
+            </button>
+
+            <!-- daily weather -->
+            <div id="daily-weather-wrapper" class="lower-panel-body">
+                <!-- model -->
+                <div class="flex-container weather-box display-none">
+                    <div>
+                        <!-- day -->
+                        <h1>Sunday</h1>
+                    </div>
+                    <div class="flex-container">
+                        <div>
+                            <!-- degrees -->
+                            <p>18&#176;</p>
+                        </div>
+                        <div>
+                            <!-- icon -->
+                            <img class="icon-sm-30" src="./assets/images/summary-icons/clear-day-white.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- hourly weather -->
+            <div id="hourly-weather-wrapper" class="lower-panel-body" visible="false">
+                <div class="flex-container weather-box display-none">
+                    <!-- model -->
+                    <div>
+                        <!-- hour -->
+                        <h1>14:00</h1>
+                    </div>
+                    <div class="flex-container">
+                        <div>
+                            <!-- degrees -->
+                            <p>18&#176;</p>
+                        </div>
+                        <div>
+                            <!-- icon -->
+                            <img class="icon-sm-30" src="./assets/images/summary-icons/clear-day-grey.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- menu container -->
+        <section id="menu-container">
+            <!-- close menu button -->
+            <button id="close-menu-btn" class="ripple">
+                &#10006;
+            </button>
+
+            <!-- container -->
+            <div>
+                <!-- add location -->
+                <div id="add-location-wrapper">
+                    <input type="text" placeholder="Location" id="location-input">
+                    <br>
+                    <button class="ripple disabled" id="add-city-btn" disabled>Add City</button>
+                    <h1 class="location-label"></h1>
+                </div>
+
+                <!-- saved cities -->
+                <div id="saved-cities-wrapper">
+                    <!-- left this code here to better see what we have to build -->
+                    <!-- <div class="flex-container saved-city-box">
+                        <div class="ripple set-city">
+                            <h1 class="set-city">Brasov</h1>
+                        </div>
+                        <div>
+                            <button class="ripple remove-saved-city">-</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- our code -->
+    <script src="./scripts/index.js"></script>
 </body>
+
 </html>
